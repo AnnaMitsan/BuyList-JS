@@ -1,79 +1,76 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="uk">
     <meta charset="UTF-8">
-    <title>My Page</title>
-
-
+    <title>Buy List</title>
     <link rel="stylesheet" type="text/css" href="main.css" />
 </head>
-<body>
-<div class="bl-background">
-    <div class="center">
-    <div class="bl-list">
-        <div class="bl-addnew">
-            <input type="text" placeholder="Назва товару"> <button data-tooltip="Add new">Додати</button>           
-        </div>
 
-        <div class="bl-row clearfix">
-            <div class="bl-product">
-                Помідори
-            </div>
-            <div class="bl-count">
-                <button class="bl-minus" data-tooltip="Minus">-</button> <span class="bl-label">8</span>
-                <button class="bl-plus" data-tooltip="Plus">+</button>
-            </div>
-            <div class="bl-buttons">
-                 <button class="bl-buy" data-tooltip="Buy">Куплено</button>  
-                <button class="bl-delete" data-tooltip="Delete">X</button>
-            </div>
-        </div>
-        <div class="bl-row clearfix">
-            <div class="bl-product">
-                Сир
+<body>
+
+
+    <div class="bl-background">
+        <div class="center">
+            <div class="bl-list">
+                <div class="bl-add">
+                    <input class="addinput" type="text" placeholder="Назва товару"> <button class="addbutton" data-tooltip="Add new">Додати</button>
                 </div>
-            <div class="bl-count">
-                <button class="bl-minus">-</button> <span class="bl-label">3</span>
-                <button class="bl-plus">+</button>
+                <div class="row-template" style="display:none">
+                    <div class="bl-row clearfix">
+                        <div class="bl-product">
+                            <div class="bl-product-name">Помідори</div>
+                            <input class="bl-change-input" type="text">
+                        </div>
+                        <div class="bl-count">
+                            <button class="bl-minus" name="minusBtn">-</button> <span class="bl-label">8</span>
+                            <button class="bl-plus">+</button>
+                        </div>
+                        <div class="bl-buttons">
+                            <button class="bl-buy">Куплено</button>
+                            <button class="bl-delete">X</button>
+                            <button class="bl-notbuy">Не куплено</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="bl-buttons">
-                <button class="bl-buy">Куплено</button>  
-                <button class="bl-delete">X</button>
-            </div>
-        </div>
-        <div class="bl-row clearfix">
-            <div class="bl-product">
-                Бургер
-            </div>
-            <div class="bl-count">
-              <button class="bl-minus">-</button>
-                <span class="bl-label">3</span>
-                <button class="bl-plus">+</button>
-            </div>
-            <div class="bl-buttons">
-                 <button class="bl-buy">Куплено</button>  
-                <button class="bl-delete">X</button>
+
+            <div class="bl-bought">
+                <div class="bl-title">Залишилося</div>
+                <div class="bl-left">
+                    <div class="left-template" style="display:none">
+                        <div class="bl-left-item">
+                            <div class="bl-left-product-name">
+                            Помідори
+                                </div>
+                            <div class="bl-left-product-count">
+                                1</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bl-title">Купленo</div>
+                <div class="bl-done"></div>
             </div>
         </div>
     </div>
-    <div class="bl-bought">
-        <div class="bl-title">Залишилося</div>
-       <div class="bl-left">111</div>
-        <div class="bl-title">Купленo</div>
-        <div class="bl-done">222</div>
-    </div>
-</div>
-</div>
     <div class="sticker">
         <div class="buy">
-        Buy List
+            Buy List
         </div>
         <div class="created">
-       created by
+            created by
         </div>
-     <div class="name">
-       Mitsan Anna
+        <div class="name">
+            Mitsan Anna
         </div>
     </div>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js">
+    </script>
+    <script type="text/javascript" src="main.js">
+    </script>
 </body>
+
 </html>
