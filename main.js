@@ -16,29 +16,21 @@ $(function() {
         var $delete = $node.find(".bl-delete");
         var $bought = $node.find(".bl-buy");
         var $unBought = $node.find(".bl-notbuy");
-        var $productName = $node.find(".bl-product");
+        var $productName = $node.find(".bl-product-name");
         var $changeNameInput = $node.find(".bl-change-input");
         
         var $statNode = $(statisticTemplate);        
         var $statProdName = $statNode.find(".bl-left-product-name");
         var $statProdCount = $statNode.find(".bl-left-product-count");
+              
+        $minus.attr("disabled", true);
         
-        $minus.isEnabled = false;
         
         $productName.text(name);
         $blLabel.text(1);
         
         $statProdName.text(name);
-        console.log("statprod", name)
         $statProdCount.text(1);
-
-        function disableButton(buttonName) {
-            buttonName.attr("disabled", true);
-        }
-
-        function enableButton(buttonName) {
-            buttonName.attr("disabled", false);
-        }
 
         function buyClick() {
             $node.addClass("state-bought");
@@ -53,33 +45,49 @@ $(function() {
             $statNode.remove();
             $statLeft.append($statNode);
         }
-
-
-        $productName.click(function() {
+        
+        $productName.click(function() {   
+            var $oldName = $productName.text();
             $node.addClass("state-change-name");
-            $node.removeClass("state-not-change-name");
-            var $oldName = $productName.val();
+            $node.removeClass("state-not-change-name");  
             var $newName = "";
-            $changeNameInput.text($oldName);
-            $changeNameInput.focus();
+            console.log("old name", $oldName);
+            $changeNameInput.val($oldName);
+        
+            
             $changeNameInput.on("input", function() {
                 if ($(this).val().length > 0) {
-                    $newName.val($(this).val());
+                    console.log("this name", $(this).val());
+                    
+                    $newName=$(this).val();
+                     console.log("new name", $newName);
+                     $productName.text($newName);
+                    $statProdName.text($newName);
+                }
+                else{
+                    $productName.text($oldName);
+                     $statProdName.text($oldName);
                 }
             });
+            
+            $changeNameInput.focus();        
             $changeNameInput.focusout(function() {
                 $node.removeClass("state-change-name");
                 $node.addClass("state-not-change-name");
-                $productName.val($newName.val());
+                
             });
-
-
         });
+        
+        function updateNode(node, fn) { node.fadeOut(250, function(){
+            fn();
+            node.fadeIn(250); });
+        }
+        
 
         function plusOne() {
             quantity++;
-            if (quantity > 1) {
-                enableButton($minus);
+            if (quantity > 1) {           
+            $minus.attr("disabled", false);
             }
             $blLabel.text(quantity);
             $statProdCount.text(quantity);
@@ -88,7 +96,7 @@ $(function() {
         function minusOne() {
             quantity--;
             if (quantity === 1) {           
-                disableButton($minus);
+            $minus.attr("disabled", true);
             }
             $blLabel.text(quantity);
             $statProdCount.text(quantity);
@@ -103,8 +111,7 @@ $(function() {
         $unBought.click(notBuyClick);
         $delete.click(deleteItem);
         $plus.click(plusOne);
-        $minus.click(minusOne);
-        disableButton($minus);        
+        $minus.click(minusOne);     
         
 
         $node.addClass("state-not-bought");
